@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.apache.camel.example.rest;
+package com.redhat.examples.rest;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.rest.RestBindingMode;
@@ -22,7 +22,7 @@ import org.apache.camel.model.rest.RestBindingMode;
 /**
  * Define REST services using the Camel REST DSL
  */
-public class UserRouteBuilder extends RouteBuilder {
+public class RestRouteBuilder extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
@@ -41,18 +41,22 @@ public class UserRouteBuilder extends RouteBuilder {
             // from JMX at runtime
             .contextPath("camel-example-servlet-rest-tomcat/rest").port(8080);
 
-        // this user REST service is json only
-        rest("/user").description("User rest service")
+        // this provider REST service is json only
+        rest("/provider").description("Provider rest service")
             .consumes("application/json").produces("application/json")
 
-            .get("/{id}").description("Find user by id").outType(User.class)
-                .to("bean:userService?method=getUser(${header.id})")
+            .get("/{id}").description("Find provider by id").outType(Provider.class)
+                .to("bean:providerService?method=getProvider(${header.id})")
 
-            .put().description("Updates or create a user").type(User.class)
-                .to("bean:userService?method=updateUser")
+            .put().description("Updates or create a provider").type(Provider.class)
+                .to("bean:providerService?method=updateProvider")
 
-            .get("/findAll").description("Find all users").outTypeList(User.class)
-                .to("bean:userService?method=listUsers");
+            .get().description("List all providers").outTypeList(Provider.class)
+                .to("bean:providerService?method=listProviders")
+                
+        	.get("/search").description("Search by Zip").outTypeList(Provider.class)
+        		.route().log("${header.zip}")
+        		.to("bean:providerService?method=searchByZip(${header.zip})").endRest();
     }
 
 }

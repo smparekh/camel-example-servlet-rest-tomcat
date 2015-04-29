@@ -27,13 +27,13 @@
   <bean id="metricsRoutePolicyFactory" class="org.apache.camel.component.metrics.routepolicy.MetricsRoutePolicyFactory"/>
 
   <!-- a rest service which uses binding to/from pojos -->
-  <bean id="userRoutes" class="org.apache.camel.example.rest.UserRouteBuilder"/>
+  <bean id="restRoutes" class="com.redhat.examples.rest.RestRouteBuilder"/>
 
   <!-- a bean for user services -->
-  <bean id="userService" class="org.apache.camel.example.rest.UserService"/>
+  <bean id="providerService" class="com.redhat.examples.rest.ProviderService"/>
 
-  <camelContext id="myCamel" xmlns="http://camel.apache.org/schema/spring">
-  <routeBuilder ref="userRoutes"/>
+  <camelContext id="providerCamelContext" xmlns="http://camel.apache.org/schema/spring">
+  <routeBuilder ref="restRoutes"/>
 </camelContext>
 
 </beans>
