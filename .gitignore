@@ -6,6 +6,7 @@ ml
 .classpath
 .ekstazi
 .project
+.tern-project
 .settings
 .checkstyle
 *.log
