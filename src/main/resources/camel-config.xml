@@ -33,7 +33,7 @@
   <bean id="userService" class="org.apache.camel.example.rest.UserService"/>
 
   <camelContext id="myCamel" xmlns="http://camel.apache.org/schema/spring">
-    <routeBuilder ref="userRoutes"/>
-  </camelContext>
+  <routeBuilder ref="userRoutes"/>
+</camelContext>
 
 </beans>
