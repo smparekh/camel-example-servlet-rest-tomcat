@@ -56,7 +56,7 @@
       <!-- we specify the base.path using relative notation, that means the actual path will be calculated at runtime as
            http://server:port/contextpath/rest -->
       <param-name>base.path</param-name>
-      <param-value>http://jbossews-tomcat.itos.redhat.com/camel-example-servlet-rest-tomcat/rest</param-value>
+      <param-value>http://workspace-tomcat.itos.redhat.com/camel-example-servlet-rest-tomcat/rest</param-value>
     </init-param>
     <init-param>
       <!-- we specify the api.path using relative notation, that means the actual path will be calculated at runtime as

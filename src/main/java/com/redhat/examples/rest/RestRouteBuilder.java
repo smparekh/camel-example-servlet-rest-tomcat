@@ -55,7 +55,7 @@ public class RestRouteBuilder extends RouteBuilder {
                 .to("bean:providerService?method=listProviders")
                 
         	.get("/search").description("Search by Zip").outTypeList(Provider.class)
-        		.route().log("${header.zip}")
+        		.route().log("Incoming zip: ${header.zip}")
         		.to("bean:providerService?method=searchByZip(${header.zip})").endRest();
     }
 

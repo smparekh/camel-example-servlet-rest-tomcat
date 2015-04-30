@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * A {@link com.redhat.examples.rest.Provider} service which we rest enable from the {@link com.redhat.examples.rest.RestRouteBuilder}.
  */
@@ -29,11 +32,13 @@ public class ProviderService {
 
     // use a tree map so they become sorted
     private final Map<String, Provider> providers = new TreeMap<String, Provider>();
+    
+    private static final Log LOG = LogFactory.getLog(ProviderService.class);
 
     public ProviderService() {
-        providers.put("123", new Provider(123, "John", "Doe", "555-555-5555", "000 Deer St. Edison, NJ", "00000"));
-        providers.put("456", new Provider(456, "Donald", "Duck", "123-456-7890", "100 Disleyland Way Orlando, FL", "00000"));
-        providers.put("789", new Provider(789, "Barack", "Obama", "201-867-5309", "1500 Pennsylvania Av. Washington D.C.", "00000"));
+        providers.put("123", new Provider(123, "John", "Doe", "555-555-5555", "000 Deer St. Edison, NJ", "11111"));
+        providers.put("456", new Provider(456, "Donald", "Duck", "123-456-7890", "100 Disleyland Way Orlando, FL", "11111"));
+        providers.put("789", new Provider(789, "Barack", "Obama", "201-867-5309", "1500 Pennsylvania Av. Washington D.C.", "11112"));
     }
 
     /**
@@ -60,20 +65,21 @@ public class ProviderService {
      *
      * @param user the user
      */
-    public void updateProvider(Provider user) {
+    public String updateProvider(Provider user) {
         providers.put("" + user.getId(), user);
+        return "Added: " + user.getLastName() + ", " + user.getFirstName();
     }
     
     public Collection<Provider> searchByZip(String zip) {
+    	zip.trim();
     	List<Provider> searchResults = new ArrayList<Provider>();
     	for (Map.Entry<String, Provider> entry : providers.entrySet())
     	{
-    		if (entry.getValue().getZipCode() == zip)
+    		if (entry.getValue().getZipCode().equalsIgnoreCase(zip))
     		{
     			searchResults.add(entry.getValue());
     		}
-    	}
-    	
+    	}    	
     	return searchResults;
     }
 }

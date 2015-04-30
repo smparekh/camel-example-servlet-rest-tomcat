@@ -32,7 +32,7 @@
   <!-- a bean for user services -->
   <bean id="providerService" class="com.redhat.examples.rest.ProviderService"/>
 
-  <camelContext id="providerCamelContext" xmlns="http://camel.apache.org/schema/spring">
+  <camelContext id="providerCamelContext" xmlns="http://camel.apache.org/schema/spring" trace="true">
   <routeBuilder ref="restRoutes"/>
 </camelContext>
 
