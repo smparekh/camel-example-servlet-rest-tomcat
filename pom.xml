@@ -56,7 +56,7 @@
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-swagger</artifactId>
-		</dependency>
+ 		</dependency>
 
 		<!-- use for json binding -->
 		<dependency>
@@ -164,10 +164,10 @@
 								</resource>
 								<!-- Copy swagger-ui resources to classes directory to be able to 
 									use it with mvn jetty:run -->
-								<resource>
+								<!-- <resource>
 									<directory>${destDir}</directory>
 									<filtering>false</filtering>
-								</resource>
+								</resource> -->
 							</resources>
 						</configuration>
 					</execution>
