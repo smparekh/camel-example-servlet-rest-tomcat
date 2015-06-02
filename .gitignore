@@ -10,6 +10,7 @@ ml
 .settings
 .checkstyle
 *.log
+*.iml
 test-salesforce-login.properties
 dependency-reduced-pom.xml
 id_file
